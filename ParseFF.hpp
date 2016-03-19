@@ -129,7 +129,6 @@ class parseFF {
             }
           }
           std::istringstream(num) >> n;
-          std::cout << n << std::endl;
         }
         catch (std::ifstream::failure e) {
           std::cerr << "Exception reading/opening file" << std::endl;
@@ -146,10 +145,8 @@ class parseFF {
       std::vector<std::string> quote;
       std::string line, snum, end;
       std::stringstream tstr;
-      std::cout << qnum << std::endl;
       tstr << qnum << ".";
       snum = tstr.str();
-      std::cout << snum << std::endl;
       tstr.str(std::string());
       bool flag = false;
       read.exceptions(std::ifstream::badbit);
@@ -161,7 +158,6 @@ class parseFF {
             flag = true;
             tstr << ++qnum << ".";
             end = tstr.str();
-            std::cout << end << std::endl;
           }
           else if (line.substr(0, 1) != "#" && flag) {
             if (line == end || line.length() == 0) { break; }
