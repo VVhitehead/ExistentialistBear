@@ -24,22 +24,12 @@ anchoring: "One Nation under God with Families and Laws for all",
 distraction: "Better to kill time than kill oneself" and
 sublimation: "I am writing a book titled The Conspiracy against the Human Race"
 5.
-#-#-# Begotten, E. Elias Merhige. 1991 #-#-#
-Language bearers, Photographers, Diary Makers,
-You with your memory are dead, frozen
-Lost in a present that never stops passing
-Here lives the incantation of matter
-A language forever.
-$$
-Like a flame burning away the darkness
-Life is flesh on bone convulsing above the ground
-6.
 #-#-# Georgias #-#-#
 Nothing exists; even if something exists,
 nothing can be known about it;
 and even if something can be known about it,
 knowledge about it can't be communicated to others.
-7.
+6.
 #-#-# The forbidden room #-#-#
 While military bands, play loud music
 To stifle the screams, of those who
@@ -51,50 +41,50 @@ On the face of the sea, four frightened men
 Wonder at their fate, their cargo most dire
 The captain mislaid, their breath in retreat
 Their doom, mere moments away.
-8.
+7.
 #-#-# Anton Chekhov, Three Sisters (Chebutikin) #-#-#
 Maybe I didn’t break it, it just seems like I broke it. Maybe it just seems
 like we exist at all, and we really aren’t even here. I don’t know anything
 no one knows anything.
-9.
+8.
 #-#-# Thomas Bernhard, In the cold #-#-#
 We are mistaken if we believe we are in possession of the truth, just as
 we are mistaken if we believe we are in error. Absurdity is the only way forward.
-10.
+9.
 #-#-# Henry Miller, Sexus #-#-#
 From the time you wake up until the moment you go to bed it’s all a lie, all a
 sham and a swindle. Everybody knows it, and everybody collaborates in the
 perpetuation of the hoax. That’s why we look so god damned disgusting to one another.
-11.
+10.
 #-#-# Charles Bukowski, Septuagenarian Stew #-#-#
 Harry glanced at the drivers of the cars. They seemed unhappy.
 The world was unhappy. People were in the dark. People were terrified
 and disappointed. People were caught in traps. People were defensive and
 frantic. They felt as if their lives were being wasted. And they were right.
-12.
+11.
 #-#-# Louis-Ferdinand Céline, Journey to the end of the night #-#-#
 To hell with reality! I want to die in music, not in reason or in prose.
 People don’t deserve the restraint we show by not going into delirium
 in front of them. To hell with them!
-13.
+12.
 #-#-# Fernando Pessoa, A factless autobiography #-#-#
 Whenever someone tells me he dreamed,
 I wonder if he realizes that he has
 never done anything but dream.
-14.
+13.
 #-#-# Martin Heidegger, Poetry, Language, Thought #-#-#
 There is much in being that man cannot master.
 There is but little that comes to be known.
 What is known remains inexact, what is mastered insecure.
-15.
+14.
 #-#-# Fernando Pessoa, The Keeper of Herds #-#-#
 I have no ambitions nor desires.
 To be a poet is not my ambition,
 It’s simply my way of being alone.
-16.
+15.
 #-#-# E.M. Cioran, Tears and Saints #-#-#
 All nihilists have wrestled with God.
-17.
+16.
 #-#-# Ernest Becker, The Denial of Death #-#-#
 Man’s very insides– his self– are foreign to him. He doesn’t know who he is, why he was born,
 what he is doing on the planet, what he is supposed to do, what he can expect.
@@ -105,7 +95,7 @@ What would the average man do with a full consciousness of absurdity? He has fas
 his character for the precise purpose of putting it between himself and the facts of life;
 it is his special tour-de-force that allows him to ignore incongruities,
 to nourish himself on impossibilities, to thrive on blindness.
-18.
+17.
 #-#-# Hello poetry - Distorted Nihilism #-#-#
 I want to sleep..
 I want to sleep and dream a dream
@@ -116,14 +106,14 @@ and laugh at the thought.
 I want to live
 I want to live a life and be immortal
 and die to prove me wrong.
-19.
+18.
 #-#-# Diogenes of Sinope #-#-#
 When asked how he wished to be buried, he left instructions to be thrown outside the city wall
 so wild animals could feast on his body. When asked if he minded this, he said, "Not at all,
 as long as you provide me with a stick to chase the creatures away!" When asked how he could
 use the stick since he would lack awareness, he replied "If I lack awareness,
 then why should I care what happens to me when I am dead?
-20.
+19.
 #-#-# Giordano Bruno: His Life and Thought #-#-#
 His home was in a hamlet just outside Nola, on the lower slopes of Cicada, a foot-hill of the Appenines
 some twenty miles east of Naples. He tells with affectionate detail of the beauty and fertility of the
@@ -134,3 +124,38 @@ said Brother Vesuvius, “look at Brother Cicada, dark and drear against the sky
 such also was his appearance viewed from Cicada. “Thus did his parents [the two mountains] first teach the lad
 to doubt, and revealed to him how distance changes the face of things. In whatever region of the globe
 I may be, I shall realize that both time and place are similarly distant from me.”
+20.
+#-#-# Giordano Bruno: Trial and death #-#-#
+Maiori forsan cum timore sententiam in me fertis quam ego accipiam.
+("Perhaps you pronounce this sentence against me with greater fear than I receive it".)
+21.
+#-#-# Martin Heidegger Quote #-#-#
+Every man is born as many men and dies as a single one.
+22.
+#-#-# Charles Seife - Zero #-#-#
+Yet through all its history, despite the rejection and the exile, zero has always
+defeated those who opposed it. Humanity could never force zero to fit its
+philosophies. Instead, zero shaped humanity’s view of the universe—and of God.
+23.
+#-#-# JOHN DONNE, “AN ANATOMY OF THE WORLD” #-#-#
+And new philosophy calls all in doubt,
+The element of fire is quite put out;
+The sun is lost, and th’ earth, and no man’s wit
+Can well direct him where to look for it….’
+Tis all in pieces, all coherence gone;
+All just supply, and all relation:
+Prince, subject, Father, Son, are things forgot.
+24.
+#-#-# JOHN CONWAY AND RICHARD GUY, THE BOOK OF NUMBERS #-#-#
+Waclaw Sierpinski, the great Polish mathematician… was worried
+that he’d lost one piece of his luggage. “No, dear!” said his wife.
+“All six pieces are here.” “That can’t be true,” said Sierpinski,
+“I’ve counted them several times: zero, one, two, three, four, five.”
+25.
+#-#-# WILLIAM THOMSON, LORD KELVIN #-#-#
+When you can measure what you are speaking about, and express it
+in numbers, you know something about it; but when you cannot
+measure it, when you cannot express it in numbers, your knowledge
+is of a meager and unsatisfactory kind: it may be the beginning
+of knowledge, but you have scarcely, in your thoughts,
+advanced to the stage of science.
