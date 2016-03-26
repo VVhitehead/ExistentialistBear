@@ -152,10 +152,11 @@ class parseFF {
           }
         }
         catch (std::ifstream::failure e) {
-          std::cerr << "Run regular text before asking for source!" << std::endl;
+          std::cerr << "Run regular text before asking for its source!" << std::endl;
           return;
         }
-        std::cout << "Source:" << tmp << std::endl;
+        if (tmp.length() > 4) { std::cout << "Source:" << tmp << std::endl; }
+        else { std::cerr << "Run regular text before asking for its source!" << std::endl; }
       }
       else {
         std::cerr << "Invalid argument." << std::endl;
