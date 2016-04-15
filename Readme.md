@@ -1,6 +1,6 @@
 ### **Existentialist Bear**
 
-Inspired by cowsay, wanted to make a less humorous version of it.
+Inspired by cowsay and fortune, wanted to make a less humorous version.
 
 ### **Installation**
 
