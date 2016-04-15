@@ -95,39 +95,68 @@ class symtrcWrap : txtWrap {
         return cloud;
       }
       else {
+        int t = 0, m = 0, j = 0;
         if (longl <= half) {
-          width -= longl / 2 + 1;
-          if (utf8len(text[longl]) - utf8len(text.front()) <= half - longl) {
-            width = utf8len(text.front());
+          width -= longl;
+          if (height % 2 == 0) {
+            j = height;
           }
-          else if (utf8len(text[longl]) - utf8len(text.back()) <= half - longl) {
-            width = utf8len(text.back());
+          else {
+            j = height - 1;
           }
         }
         else {
-          width -= height - longl;
-          if (utf8len(text[longl]) - utf8len(text.front()) <= height - longl) {
-            width = utf8len(text.front());
+          if (height % 2 == 0) {
+            width -= (height + 1 - longl);
+            j = height;
           }
-          else if (utf8len(text[longl]) - utf8len(text.back()) <= height - longl) {
-            width = utf8len(text.back());
+          else {
+            width -= (height - longl);
+            j = height - 1;
+          }
+        }
+        for (int i = 0; i < height; ++i) {
+          if (i <= half) {
+            if (utf8len(text[i]) > (width + 2 * i)) {
+              m = utf8len(text[i]) - (width + 2 * i);
+              if (m > t) {
+                t = m;
+                width = utf8len(text[i]);
+              }
+            }
+          }
+          else {
+            j -= 2;
+            if (utf8len(text[i]) > (width + j)) {
+              m = utf8len(text[i]) - (width + j);
+              if (m > t) {
+                t = m;
+                width = utf8len(text[i]);
+              }
+            }
           }
         }
         cloudS = std::string((half + 1), ' ');
         conn = cloudS + " \\";
+        if (height % 2 == 0) {
+          j = height;
+        }
+        else {
+          j = height - 1;
+        }
         for (int i = 0; i < width + 1; ++i) {
           i % 2 == 0 ? cloudS += wrpChar : cloudS += ' ';
         }
         strtend = cloudS;
         cloud.push_back(strtend);
-        for (int j = height - 1, i = 0; i < height; ++i) {
+        for (int i = 0; i < height; ++i) {
           if (i <= half) {
             cloudS = std::string(half - i, ' ') + wrpChar + center(text[i], (width + 2 * i)) + wrpChar;
             cloud.push_back(cloudS);
           }
           else {
             j -= 2;
-            cloudS = std::string(i - half, ' ') + wrpChar + center(text[i], (width + j)) + wrpChar;
+            cloudS = std::string(i - half, ' ') + wrpChar + center(text[i], width + j) + wrpChar;
             cloud.push_back(cloudS);
           }
         }
