@@ -17,6 +17,7 @@ class parseFF {
     std::ifstream source, read;
     std::ofstream cont;
     int n;
+    const char *content = "Data/Content.txt", *txtsource = "Data/Lastqs";
   public:
     __time_t lastmod(const char *filepath) {
       struct stat64 fileinfo;
@@ -78,11 +79,11 @@ class parseFF {
       std::stringstream convert;
       source.exceptions(std::ifstream::badbit);
       cont.exceptions(std::ofstream::badbit);
-      if (lastmod("Data/Content.txt") <= lastmod(filepath)) {
+      if (lastmod(content) <= lastmod(filepath)) {
         try {
           source.open(filepath);
           try {
-            cont.open("Data/Content.txt");
+            cont.open(content);
             cont << "1.\n";
             while (!source.eof()) {
               safeGetline(source, tmp);
@@ -113,7 +114,7 @@ class parseFF {
       }
       else {
         try {
-          source.open("Data/Content.txt", std::ios::binary);
+          source.open(content, std::ios::binary);
           source.seekg(-1, std::ios::end);
           char c;
           bool flag = false, readnum = false, check = false;
@@ -145,7 +146,7 @@ class parseFF {
       if (s == "-S" || s == "-s") {
         read.exceptions(std::ifstream::badbit);
         try {
-          read.open("Data/Lastqs");
+          read.open(txtsource);
           while (read.good()) {
             safeGetline(read, tmp);
             break;
@@ -169,10 +170,10 @@ class parseFF {
       tstr << qnum << ".";
       snum = tstr.str();
       tstr.str(std::string());
-      bool flag = false;
+      bool flag = false, src = true;
       read.exceptions(std::ifstream::badbit);
       try {
-        read.open("Data/Content.txt");
+        read.open(content);
         while (!read.eof()) {
           safeGetline(read, line);
           if (line == snum) {
@@ -181,13 +182,24 @@ class parseFF {
             end = tstr.str();
           }
           else if (line.substr(0, 5) == "#-#-#" && flag) {
-            cont.open("Data/Lastqs");
+            cont.open(txtsource);
             cont << line.substr(5, (line.length() - 10));
+            src = false;
           }
           else if (line.substr(0, 1) != "#" && flag) {
             if (line == end || line.length() == 0) { break; }
             if (line == "$$") { quote.push_back(""); }
             else { quote.push_back(line); }
+          }
+        }
+        if (src) {
+          try {
+            cont.open(txtsource);
+            cont << " Unknown";
+          }
+          catch (std::ifstream::failure e) {
+            std::cerr << "Exception opening/reading/ file" << std::endl;
+            throw;
           }
         }
       }
