@@ -14,19 +14,27 @@ class symtrcWrap : txtWrap {
     virtual void setText (std::vector<std::string> txt) { text = txt; }
     int utf8len(std::string s) {
       int len = 0;
-      for (auto & element : s) {
+      for (auto & element : s)
         len += (element & 0xc0) != 0x80;
-      }
       return len;
     }
     std::string center(const std::string& s, const int w) {
       std::stringstream ss, spaces;
       int pad = w - utf8len(s); // count excess room to pad
-      for (int i = 0; i < pad / 2; ++i)
-        spaces << " ";
-      if (w % 2 == 0) { ss << " "; } // if width is not odd, add 1 more space
-      ss << spaces.str() << s << spaces.str(); // format with padding
-      if (pad > 0 && pad % 2 != 0) { ss << " "; } // if pad is odd #, add 1 more space
+      if (pad > 0 && pad % 2 != 0) {
+        for (int i = 0; i < pad / 2; ++i)
+          ss << ' ';
+        ss << s;
+        for (int i = 0; i < pad / 2 + 1; ++i)
+          ss << ' ';
+      }
+      else {
+        for (int i = 0; i < pad / 2; ++i)
+          ss << ' ';
+        ss << s;
+        for (int i = 0; i < pad / 2; ++i)
+          ss << ' ';
+      }
       return ss.str();
     }
     std::vector<std::string> wrapImpl () {
@@ -41,17 +49,17 @@ class symtrcWrap : txtWrap {
         }
       }
       half = height / 2;
-      if (width == utf8len(text.front()) || utf8len(text.back()) == width || text.size() < 4) {
+      if (width == utf8len(text.front()) || utf8len(text.back()) == width || text.size() < 3) {
+        width % 2 == 0 ? ++width : width;
         if (height % 2 != 0) {
           cloudS = std::string((half + 1), ' ');
           conn = cloudS + " \\";
-          for (int i = 0; i < width + 1; ++i) {
+          for (int i = 0; i < width; ++i)
             i % 2 == 0 ? cloudS += wrpChar : cloudS += ' ';
-          }
           strtend = cloudS;
           cloud.push_back(strtend);
           for (int j = height - 1, i = 0; i < height; ++i) {
-            if (i < height / 2 + 1) {
+            if (i <= height / 2) {
               cloudS = std::string(half - i, ' ') + wrpChar + center(text[i], (width + 2 * i)) + wrpChar;
               cloud.push_back(cloudS);
             }
@@ -68,12 +76,11 @@ class symtrcWrap : txtWrap {
           return cloud;
         }
         cloudS = std::string(half + 1, ' ');
-        for (int i = 0; i < width + 1; ++i) {
+        for (int i = 0; i < width; ++i)
           i % 2 == 0 ? cloudS += wrpChar : cloudS += ' ';
-        }
         cloud.push_back(cloudS);
         for (int j = height, i = 0; i < height; ++i) {
-          if (i < height / 2 + 1) {
+          if (i <= height / 2) {
             cloudS = std::string(half - i, ' ') + wrpChar + center(text[i], (width + 2 * i)) + wrpChar;
             cloud.push_back(cloudS);
           }
@@ -85,9 +92,8 @@ class symtrcWrap : txtWrap {
         }
         strtend = std::string(half, ' ');
         cloudS = strtend + " \\";
-        for (int i = 0; i < width + 3; ++i) {
+        for (int i = 0; i < width + 3; ++i)
           i % 2 == 0 ? strtend += wrpChar : strtend += ' ';
-        }
         cloud.push_back(strtend);
         cloud.push_back(cloudS);
         cloudS = std::string(half, ' ') + "  \\" + std::string(13 - half, ' ') + "__";
@@ -97,13 +103,11 @@ class symtrcWrap : txtWrap {
       else {
         int t = 0, m = 0, j = 0;
         if (longl <= half) {
-          width -= longl;
-          if (height % 2 == 0) {
+          width -= longl * 2;
+          if (height % 2 == 0)
             j = height;
-          }
-          else {
+          else
             j = height - 1;
-          }
         }
         else {
           if (height % 2 == 0) {
@@ -119,32 +123,25 @@ class symtrcWrap : txtWrap {
           if (i <= half) {
             if (utf8len(text[i]) > (width + 2 * i)) {
               m = utf8len(text[i]) - (width + 2 * i);
-              if (m > t) {
+              if (m > t)
                 t = m;
-                width = utf8len(text[i]);
-              }
             }
           }
           else {
             j -= 2;
             if (utf8len(text[i]) > (width + j)) {
               m = utf8len(text[i]) - (width + j);
-              if (m > t) {
+              if (m > t)
                 t = m;
-                width = utf8len(text[i]);
-              }
             }
           }
         }
+        width += t;
+        width % 2 == 0 ? ++width : width;
         cloudS = std::string((half + 1), ' ');
         conn = cloudS + " \\";
-        if (height % 2 == 0) {
-          j = height;
-        }
-        else {
-          j = height - 1;
-        }
-        for (int i = 0; i < width + 1; ++i) {
+        height % 2 == 0 ? j = height : j = height - 1;
+        for (int i = 0; i < width; ++i) {
           i % 2 == 0 ? cloudS += wrpChar : cloudS += ' ';
         }
         strtend = cloudS;

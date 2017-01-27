@@ -10,6 +10,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+/* len of chat box:
+----------------------------------------------------------------------------------
+or 82 (79 max allowed len of str without the walls) */
+
+#define LIM 79
+#define MAXNL 4
 
 class parseFF {
   private:
@@ -24,6 +30,42 @@ class parseFF {
       if(stat64(filepath, &fileinfo) != -1)
         return fileinfo.st_mtime;
       return -1;
+    }
+    int utf8len(std::string &s) {
+      int len = 0;
+      for (auto & element : s)
+        len += (element & 0xc0) != 0x80;
+      return len;
+    }
+    void reverse(std::string &s) {
+        int c, i, j;
+        for (i = 0, j = utf8len(s) - 1; i < j; i++, j--) {
+            c = s[i];
+            s[i] = s[j];
+            s[j] = c;
+        }
+    }
+    void sort(std::vector<size_t> &v) {
+      size_t swap;
+      for (int i = 0; i < v.size(); ++i) {
+        for (int j = i; j < v.size(); ++j) {
+          if (v[i] > v[j]) {
+            swap = v[i];
+            v[i] = v[j];
+            v[j] = swap;
+          }
+        }
+      }
+    }
+    std::string cnvrt2str(size_t num) {
+      std::string cnvrted = "";
+      for (;num / 10;) {
+        cnvrted += (num % 10) + '0';
+        num /= 10;
+      }
+      cnvrted += num + '0';
+      reverse(cnvrted);
+      return cnvrted;
     }
     std::istream& safeGetline(std::istream& is, std::string& t) {
       t.clear();
@@ -207,6 +249,128 @@ class parseFF {
         std::cerr << "Exception opening/reading/ file" << std::endl;
       }
       return quote;
+    }
+    std::vector<std::string> foldLines(std::string s) {
+      // if no '\n' in s and length of s <= 79:
+      // return s
+      std::vector<std::string> fin;
+      if (utf8len(s) <= 79) {
+        for (auto &element : s)
+          if (element == '\n' || element == '\t')
+            goto out;
+        fin.push_back(trim(s));
+        return fin;
+      }
+      out:
+      size_t i = 0, pos = 0, theone = 0;
+      int siz = 0, dev = 0, tn = 0;
+      std::string cut = "", tmp = s, t = "";
+      std::vector<size_t> nls;
+      std::map<size_t, int> sps;
+      for (auto &elm : s) {
+        if (elm == '\t' || elm == '\n') {
+          cut += ' ';
+          sps[++pos] = i;
+        }
+        else
+          cut += elm;
+        ++i;
+        }
+        std::cout << utf8len(cut) << std::endl;
+        if ((siz = utf8len(cut)) > LIM) {
+          int lnlm = (siz - LIM) / 2;
+          dev = std::abs(sps.begin() -> second - lnlm);
+          for (auto const &it : sps) {
+            tn = std::abs(it.second - lnlm);
+            if (tn < dev) {
+              dev = tn;
+              theone = it.second;
+            }
+          }
+          if (theone)
+            nls.push_back(theone);
+          int lmt = LIM, tmp = 0;
+          for (int i = 0, lnlmd = lnlm, thetwo = theone; siz - theone >= lmt; i += 2) {
+            lmt = LIM - i - 2;
+            lnlm = theone + lmt;
+            lnlmd = thetwo - lmt + 2;
+            for (auto const &it : sps) {
+              if (it.second > lnlm)
+                break;
+              theone = it.second;
+            }
+            nls.push_back(theone);
+            if (thetwo <= lmt)
+              break;
+            for (auto const &it : sps) {
+              if (it.second >= lnlmd) {
+                nls.push_back(it.second);
+                thetwo = it.second;
+                break;
+              }
+            }
+          }
+          nls.push_back(i-1); //Push back the index of the last char in s.. not to skip the line after last \n
+          sort(nls);
+          for (int i = 0; i < nls.size() - 1; ++i)
+            if (nls[i+1] - nls[i] > lmt)
+              lmt = nls[i+1] - nls[i];
+          lmt % 2 == 0 ? ++lmt : lmt;
+          tmp = lmt;
+          int j = 0;
+          for (auto &elm : cut) {
+            for (auto &nl : nls) {
+              if (nl == j) {
+                fin.push_back(trim(t));
+                t = "";
+                goto bai;
+              }
+            }
+            t += elm;
+            bai:
+            ++j;
+          }
+        }
+        else {
+          std::cout << "fuck" << std::endl;
+          size_t limit = LIM, cntn = 0, i = 0, inwrd = 0, pos = 0;
+          std::string line = "", tmp = "";
+          for (auto &elm : s) {
+            if (elm == '\n' && cntn < MAXNL) {
+              limit -= 4;
+              ++cntn;
+              i = 0;
+              fin.push_back(line);
+              line = "";
+              inwrd = pos = 0;
+              continue;
+            }
+            else if (elm == '\n' && cntn >= MAXNL) {
+              line += ' ';
+              ++i;
+              inwrd = pos = 0;
+              continue;
+            }
+            if (i < limit) {
+              if (elm != ' ')
+                pos = i;
+              if (elm == ' ' && pos < i)
+                inwrd = pos + (i - pos);
+              line += elm;
+              ++i;
+            }
+            else {
+              tmp = line.substr(0, inwrd);
+              fin.push_back(trim(tmp));
+              line = line.substr(inwrd, limit);
+              inwrd = pos = 0;
+              limit -= 4;
+              i = 0;
+            }
+          }
+          fin.push_back(trim(line));
+        }
+        return fin;
     }
 };
 
