@@ -268,7 +268,7 @@ class parseFF {
       std::vector<size_t> nls;
       std::map<size_t, int> sps;
       for (auto &elm : s) {
-        if (elm == '\t' || elm == '\n') {
+        if (elm == ' ' || elm == '\t' || elm == '\n') {
           cut += ' ';
           sps[++pos] = i;
         }
@@ -276,7 +276,7 @@ class parseFF {
           cut += elm;
         ++i;
         }
-        std::cout << utf8len(cut) << std::endl;
+        //std::cout << utf8len(cut) << std::endl;
         if ((siz = utf8len(cut)) > LIM) {
           int lnlm = (siz - LIM) / 2;
           dev = std::abs(sps.begin() -> second - lnlm);
@@ -332,7 +332,6 @@ class parseFF {
           }
         }
         else {
-          std::cout << "fuck" << std::endl;
           size_t limit = LIM, cntn = 0, i = 0, inwrd = 0, pos = 0;
           std::string line = "", tmp = "";
           for (auto &elm : s) {
