@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]) {
       txt.retrieves(argv[1]);
   }
   else if (argc == 1) { // txt.uniRndmInt()
-    ord.setText(txt.retrieveq("Data/Content.txt", 98)); // 96
+    ord.setText(txt.retrieveq("Data/Content.txt", txt.uniRndmInt())); // 96
     prntO(ord.wrapImpl());
     prntO(ord.AArt());
   }
