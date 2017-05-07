@@ -12,4 +12,4 @@ Just compile the ExistentialismBear.cpp with "-std=c++11" flag.
 
 ### **Contributing**
 
-Feel free to contribute in any way.
+Feel free to contribute in any way. Submitting your own allegories, quotes...etcetera. Does not have to be consistent with the nihilist or existential like rhetoric. At this point anything goes from prose 2 even shitposting...and would be gr8ly appreciated..

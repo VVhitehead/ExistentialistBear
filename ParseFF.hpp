@@ -258,7 +258,7 @@ class parseFF {
         for (auto &element : s)
           if (element == '\n' || element == '\t')
             goto out;
-        fin.push_back(trim(s));
+        fin.push_back(reduce(s));
         return fin;
       }
       out:
@@ -321,7 +321,7 @@ class parseFF {
           for (auto &elm : cut) {
             for (auto &nl : nls) {
               if (nl == j) {
-                fin.push_back(trim(t));
+                fin.push_back(reduce(t));
                 t = "";
                 goto bai;
               }
@@ -360,14 +360,14 @@ class parseFF {
             }
             else {
               tmp = line.substr(0, inwrd);
-              fin.push_back(trim(tmp));
+              fin.push_back(reduce(tmp));
               line = line.substr(inwrd, limit);
               inwrd = pos = 0;
               limit -= 4;
               i = 0;
             }
           }
-          fin.push_back(trim(line));
+          fin.push_back(reduce(line));
         }
         return fin;
     }
