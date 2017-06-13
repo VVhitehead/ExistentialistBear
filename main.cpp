@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
     if (cmp(argv[1], "-say")) {
       for (int i = 2; i < argc; ++i) {
         if (ord.utf8len(argv[i]) > MAX) {
-          std::cerr << "Won't accept strings longer then: " << MAX << "!\n";
+          std::cout << "Won't accept strings longer then: " << MAX << " characters!\n";
           exit(-1);
         }
         say += std::string(argv[i]) + " ";
