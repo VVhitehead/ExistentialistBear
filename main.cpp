@@ -2,7 +2,7 @@
 #include "symetricWrap.hpp"
 #include "ParseFF.hpp"
 
-#define MAX 1500
+#define MAX 1850
 
 /* "º", "Ø", "×", Ô", "Ò", "o", "O", "0", "·", "¤", "œ", "ƨ", "ɂ", "ϭ", "•" */
 /* txt.uniRndmInt() */
