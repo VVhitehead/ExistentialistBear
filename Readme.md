@@ -4,7 +4,7 @@ Inspired by cowsay and fortune.
 
 ### **Installation**
 
-Just compile the ExistentialismBear.cpp with "-std=c++11" flag.
+Just compile the "main.cpp" file with "-std=c++11" flag.
 
 ### **Screenshoot**
 
