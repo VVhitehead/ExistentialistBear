@@ -23,7 +23,7 @@ int main(int argc, char const *argv[]) {
   parseFF txt;
   txt.createCF("Data/Base");
   symtrcWrap ord;
-  ord.setChar("•");
+  ord.setChar("•"); // Set the wrapper character that will be in use(can be almost any unicode character)
   std::string say = "";
   if ( argc > 2 ) {
     if (cmp(argv[1], "-say")) {
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
       ord.setText(txt.foldLines(say));
       prntO(ord.wrapImpl());
       prntO(ord.AArt());
-      //printf("\n%d", argc);
+      //printf("\n%d", argc); // Flag input checker
     }
     else
       std::cout <<"Usage: " << argv[0] << " flag." << std::endl;
